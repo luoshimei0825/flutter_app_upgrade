@@ -3,13 +3,12 @@
 1、在`pubspec.yaml`中加入：
 
 ```
-dependencies:
-  flutter_app_upgrade: ^1.1.0
+
 ```
 
 2、执行flutter命令获取包：
 ```
-flutter pub get`
+flutter pub get
 ```
 
 3、引入
