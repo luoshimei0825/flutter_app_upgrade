@@ -8,10 +8,10 @@ class Wave extends StatefulWidget {
   final Axis direction;
 
   const Wave({
-    Key key,
-    @required this.value,
-    @required this.color,
-    @required this.direction,
+    Key? key,
+    required this.value,
+    required this.color,
+    required this.direction,
   }) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class Wave extends StatefulWidget {
 }
 
 class _WaveState extends State<Wave> with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
+  late AnimationController _animationController;
 
   @override
   void initState() {
@@ -65,9 +65,9 @@ class _WaveClipper extends CustomClipper<Path> {
   final Axis direction;
 
   _WaveClipper({
-    @required this.animationValue,
-    @required this.value,
-    @required this.direction,
+    required this.animationValue,
+    required this.value,
+    required this.direction,
   });
 
   @override
@@ -93,9 +93,7 @@ class _WaveClipper extends CustomClipper<Path> {
     final waveList = <Offset>[];
     for (int i = -2; i <= size.height.toInt() + 2; i++) {
       final waveHeight = (size.width / 20);
-      final dx = math.sin((animationValue * 360 - i) % 360 * (math.pi / 180)) *
-          waveHeight +
-          (size.width * value);
+      final dx = math.sin((animationValue * 360 - i) % 360 * (math.pi / 180)) * waveHeight + (size.width * value);
       waveList.add(Offset(dx, i.toDouble()));
     }
     return waveList;
@@ -105,15 +103,12 @@ class _WaveClipper extends CustomClipper<Path> {
     final waveList = <Offset>[];
     for (int i = -2; i <= size.width.toInt() + 2; i++) {
       final waveHeight = (size.height / 20);
-      final dy = math.sin((animationValue * 360 - i) % 360 * (math.pi / 180)) *
-          waveHeight +
-          (size.height - (size.height * value));
+      final dy = math.sin((animationValue * 360 - i) % 360 * (math.pi / 180)) * waveHeight + (size.height - (size.height * value));
       waveList.add(Offset(i.toDouble(), dy));
     }
     return waveList;
   }
 
   @override
-  bool shouldReclip(_WaveClipper oldClipper) =>
-      animationValue != oldClipper.animationValue;
+  bool shouldReclip(_WaveClipper oldClipper) => animationValue != oldClipper.animationValue;
 }

@@ -23,7 +23,6 @@ import java.util.*
 /** FlutterUpgradePlugin */
 public class FlutterAppUpgradePlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
-
   override fun onDetachedFromActivity() {
   }
 
